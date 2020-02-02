@@ -12,20 +12,14 @@ dependencies:
   cupertino_icons: ^0.1.2
   rxdart: ^0.23.1
   dio: ^3.0.8
+  sqflite:
+  path:
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 flutter:
   uses-material-design: true
-
-# 한국영화데이터베이스
-# http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json.jsp?
-# collection=kmdb_new&
-# listCount=10
-# detail=N&
-# ServiceKey=749717MI3A8CCA2A6288
-# query=
 
 # 한국영화진흥위원회
 # http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?
