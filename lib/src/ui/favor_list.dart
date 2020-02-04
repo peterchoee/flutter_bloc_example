@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MovieList extends StatefulWidget {
+class FavorList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
