@@ -12,8 +12,8 @@ class Home extends StatelessWidget {
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
-                Tab(text: '영화 순위'),
-                Tab(text: '저장한 영화'),
+                Tab(icon: Icon(Icons.apps)),
+                Tab(icon: Icon(Icons.archive)),
               ],
             ),
             title: Text('BLOC Example'),

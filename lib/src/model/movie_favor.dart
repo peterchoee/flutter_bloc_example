@@ -1,4 +1,4 @@
-class Movie {
+class MovieFavor {
   final int id;
   final String boxofficeType;
   final String showRange;
@@ -22,7 +22,7 @@ class Movie {
   final String showCnt;
   final DateTime createAt;
 
-  Movie({
+  MovieFavor({
     this.id, this.boxofficeType, this.showRange, this.rnum,
     this.rank, this.rankInten, this.rankOldAndNew,
     this.movieCd, this.movieNm, this.openDt,

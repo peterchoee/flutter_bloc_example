@@ -4,9 +4,11 @@ import 'package:flutter_bloc_example/src/repository/movie_api_provider.dart';
 class RankList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return RankListState();
+    //return RankListState();
+    return null;
   }
 }
+/*
 
 class RankListState extends State<RankList> {
   @override
@@ -79,4 +81,4 @@ class RankListState extends State<RankList> {
       }),
     );
   }
-}
+}*/
