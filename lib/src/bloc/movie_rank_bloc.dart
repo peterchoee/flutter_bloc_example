@@ -17,4 +17,4 @@ class MovieRankBloc {
     _moviesFetcher.close();
   }
 }
-final bloc = MovieRankBloc();
+final rankBloc = MovieRankBloc();

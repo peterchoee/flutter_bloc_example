@@ -13,25 +13,11 @@ class MovieRankList extends StatefulWidget {
 
 class RankListState extends State<MovieRankList> {
 
-  final MovieRankBloc rankBloc = MovieRankBloc();
-
-  @override
-  void initState() {
-    super.initState();
-    rankBloc.fetchAllMovies();
-  }
-
-  @override
-  void dispose() {
-    rankBloc.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: bloc.rankMovies,
+        stream: rankBloc.rankMovies,
         builder: (context, snapshot) {
           print("ui stream builder : $snapshot");
           if (snapshot.hasData) {
@@ -63,5 +49,17 @@ class RankListState extends State<MovieRankList> {
         );
       }
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    rankBloc.fetchAllMovies();
+  }
+
+  @override
+  void dispose() {
+    rankBloc.dispose();
+    super.dispose();
   }
 }
