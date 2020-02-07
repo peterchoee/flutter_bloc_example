@@ -1,5 +1,5 @@
 import 'package:flutter_bloc_example/src/model/movie_favor.dart';
-import '../model/movie_result.dart';
+import '../model/movie_rank.dart';
 import 'movie_api_provider.dart';
 import 'movie_db_provider.dart';
 
@@ -9,11 +9,11 @@ class Repository {
 
   final movieDbProvider = MovieDbProvider();
 
-  Future<MovieResult> fetchRankMovie() => movieApiProvider.fetchMovieResult();
+  Future<List<DailyBoxOfficeList>> getRank() => movieApiProvider.fetchMovieRank();
 
-  Future<MovieFavor> saveFavor(MovieFavor movieFavor) => movieDbProvider.insertMovie(movieFavor);
+  Future<MovieFavor> setFavor(MovieFavor movieFavor) => movieDbProvider.insertFavor(movieFavor);
 
-  Future<List<MovieFavor>> fetchFavorList(String movieCd) => movieDbProvider.selectMovieList(movieCd);
+  Future<List<MovieFavor>> getFavorList(String movieCd) => movieDbProvider.selectFavorList();
 
-  Future<void> deleteFavor(String movieCd) => movieDbProvider.deleteMovie(movieCd);
+  Future<void> deleteFavor(int id) => movieDbProvider.deleteFavor(id);
 }

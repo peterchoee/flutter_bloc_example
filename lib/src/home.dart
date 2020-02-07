@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_example/src/home_rank.dart';
-import 'package:flutter_bloc_example/src/home_favor.dart';
+import 'package:flutter_bloc_example/src/ui/movie_favor_list.dart';
+import 'package:flutter_bloc_example/src/ui/movie_rank_list.dart';
 
 class Home extends StatelessWidget {
   @override
@@ -20,8 +20,8 @@ class Home extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              HomeRank(),
-              HomeFavor(),
+              MovieRankList(),
+              MovieFavorList(),
             ],
           ),
         ),

@@ -35,21 +35,21 @@ class MovieDbProvider {
     );
   }
 
-  Future<void> insertMovie(MovieFavor movie) async {
+  Future<void> insertFavor(MovieFavor movieFavor) async {
     final db = await database;
-    var response = await db.rawInsert('INSERT INTO $tableName(*) VALUES(?)', [movie]);
+    var response = await db.rawInsert('INSERT INTO $tableName(*) VALUES(?)', [movieFavor]);
     return response;
   }
 
-  Future<List<MovieFavor>> selectMovieList(String movieCd) async {
+  Future<List<MovieFavor>> selectFavorList() async {
     final db = await database;
-    var response = await db.rawQuery('SELECT * FROM $tableName WHERE movieCd = ?', [movieCd]);
-    return response.isNotEmpty ? MovieFavor(movieCd: response.first['movieCd'], movieNm: response.first['movieNm']) : Null;
+    var response = await db.rawQuery('SELECT * FROM $tableName ORDER BY createAt ASC');
+    return response.isNotEmpty ? response : Null;
   }
 
-  Future<void> deleteMovie(String movieCd) async {
+  Future<void> deleteFavor(int id) async {
     final db = await database;
-    var response = db.rawDelete('DELETE FROM $tableName WHERE movieCd = ?', [movieCd]);
+    var response = db.rawDelete('DELETE FROM $tableName WHERE id = ?', [id]);
     return response;
   }
 }
