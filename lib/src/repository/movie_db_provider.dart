@@ -43,9 +43,10 @@ class MovieDbProvider {
 
   Future<List<MovieFavor>> selectFavorList() async {
     final db = await database;
-    var response = await db.rawQuery('SELECT * FROM $tableName ORDER BY createAt ASC');
+    var response = await db.rawQuery('SELECT * FROM $tableName');
     return response.isNotEmpty ? response : Null;
   }
+  //https://steemit.com/programming/@tstieff/using-sqflite-in-your-flutter-applicaiton-effectively
 
   Future<void> deleteFavor(int id) async {
     final db = await database;

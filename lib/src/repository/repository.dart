@@ -13,7 +13,7 @@ class Repository {
 
   Future<MovieFavor> setFavor(MovieFavor movieFavor) => movieDbProvider.insertFavor(movieFavor);
 
-  Future<List<MovieFavor>> getFavorList(String movieCd) => movieDbProvider.selectFavorList();
+  Future<List<MovieFavor>> getFavorList() => movieDbProvider.selectFavorList();
 
   Future<void> deleteFavor(int id) => movieDbProvider.deleteFavor(id);
 }
