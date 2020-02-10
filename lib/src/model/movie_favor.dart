@@ -1,44 +1,22 @@
 class MovieFavor {
   final int id;
-  final String boxofficeType;
-  final String showRange;
-  final String rnum;
   final String rank;
   final String rankInten;
-  final String rankOldAndNew;
-  final String movieCd;
   final String movieNm;
   final String openDt;
-  final String salesAmt;
-  final String salesShare;
-  final String salesInten;
-  final String salesChange;
   final String salesAcc;
-  final String audiCnt;
-  final String audiInten;
-  final String audiChange;
   final String audiAcc;
-  final String scrnCnt;
-  final String showCnt;
-  final DateTime createAt;
+  final String createAt;
 
   MovieFavor({
-    this.id, this.boxofficeType, this.showRange, this.rnum,
-    this.rank, this.rankInten, this.rankOldAndNew,
-    this.movieCd, this.movieNm, this.openDt,
-    this.salesAmt, this.salesShare, this.salesInten, this.salesChange, this.salesAcc,
-    this.audiCnt, this.audiInten, this.audiChange, this.audiAcc,
-    this.scrnCnt, this.showCnt, this.createAt
+    this.id, this.rank, this.rankInten, this.movieNm, this.openDt,
+    this.salesAcc, this.audiAcc, this.createAt
   });
 
   Map<String, dynamic> toMap() {
     return {
-      'id': id, 'boxofficeType': boxofficeType, 'showRange': showRange, 'rnum': rnum,
-      'rank': rank, 'rankInten': rankInten, 'rankOldAndNew': rankOldAndNew,
-      'movieCd': movieCd, 'movieNm': movieNm, 'openDt': openDt,
-      'salesAmt': salesAmt, 'salesShare': salesShare, 'salesInten': salesInten, 'salesChange': salesChange, 'salesAcc': salesAcc,
-      'audiCnt': audiCnt, 'audiInten': audiInten, 'audiChange': audiChange, 'audiAcc': audiAcc,
-      'scrnCnt': scrnCnt, 'showCnt': showCnt, 'createAt': createAt,
+      'id': id, 'rank': rank, 'rankInten': rankInten, 'movieNm': movieNm, 'openDt': openDt,
+      'salesAcc': salesAcc, 'audiAcc': audiAcc, 'createAt': createAt,
     };
   }
 
