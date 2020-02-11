@@ -5,52 +5,47 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
-final String databaseName = 'user_favor_movie.db';
-final String tableName = 'FAVOR_MOVIE';
-
+final databaseName = 'MovieFavor.db';
+final favorTableName = 'favor';
 class MovieDbProvider {
 
-  MovieDbProvider._();
-  static final MovieDbProvider _db = MovieDbProvider._();
-  factory MovieDbProvider() => _db;
+  static final MovieDbProvider dbProvider = MovieDbProvider();
 
-  static Database _database;
+  Database _database;
 
   Future<Database> get database async {
-    if(_database != null) return _database;
-
-    _database = await initDB();
+    if (_database != null) return _database;
+    _database = await createDatabase();
     return _database;
   }
 
-  initDB() async {
+  createDatabase() async {
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
+    //"ReactiveTodo.db is our database instance name
     String path = join(documentsDirectory.path, databaseName);
-    return await openDatabase(
-        path,
-        version: 1,
-        onCreate: (db, version) async {
-          await db.execute("CREATE TABLE $tableName(id INTEGER PRIMARY KEY, name TEXT, age INTEGER)");
-        }
-    );
+
+    var database = await openDatabase(path,
+        version: 1, onCreate: initDB, onUpgrade: onUpgrade);
+    return database;
   }
 
-  Future<void> insertFavor(MovieFavor movieFavor) async {
-    final db = await database;
-    var response = await db.rawInsert('INSERT INTO $tableName(*) VALUES(?)', [movieFavor]);
-    return response;
+  //This is optional, and only used for changing DB schema migrations
+  void onUpgrade(Database database, int oldVersion, int newVersion) {
+    if (newVersion > oldVersion) {}
   }
 
-  Future<List<MovieFavor>> selectFavorList() async {
-    final db = await database;
-    var response = await db.rawQuery('SELECT * FROM $tableName');
-    return response.isNotEmpty ? response : Null;
-  }
-  //https://steemit.com/programming/@tstieff/using-sqflite-in-your-flutter-applicaiton-effectively
-
-  Future<void> deleteFavor(int id) async {
-    final db = await database;
-    var response = db.rawDelete('DELETE FROM $tableName WHERE id = ?', [id]);
-    return response;
+  void initDB(Database database, int version) async {
+    await database.execute("CREATE TABLE $favorTableName ("
+        "id INTEGER PRIMARY KEY, "
+        "rank TEXT, "
+        "rankInten TEXT, "
+        "movieNm TEXT, "
+        "openDt TEXT, "
+        "salesAcc TEXT, "
+        "audiAcc TEXT, "
+        "createAt TEXT"
+        ")");
   }
 }
+//https://steemit.com/programming/@tstieff/using-sqflite-in-your-flutter-applicaiton-effectively
+//https://medium.com/@vaygeth/reactive-flutter-todo-app-using-bloc-design-pattern-b71e2434f692

@@ -10,6 +10,13 @@ class Detail extends StatelessWidget {
 
   Detail({Key key, @required this.detailMovie}) : super(key: key);
 
+  /*MovieFavor(
+  rank: detailMovie.rank, rankInten: detailMovie.rankInten,
+  movieNm: detailMovie.movieNm, openDt: detailMovie.openDt,
+  salesAcc: detailMovie.salesAcc, audiAcc: detailMovie.audiAcc,
+  createAt: FormatDateUtil().todayDate()
+  )*/
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,14 +25,15 @@ class Detail extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add_circle_outline, color: Colors.white),
-            onPressed: favorBloc.saveFavor(
-                MovieFavor(
-                    rank: detailMovie.rank, rankInten: detailMovie.rankInten,
-                    movieNm: detailMovie.movieNm, openDt: detailMovie.openDt,
-                    salesAcc: detailMovie.salesAcc, audiAcc: detailMovie.audiAcc,
-                    createAt: FormatDateUtil().todayDate()
-                )
-              ),
+            onPressed: () {
+              favorBloc.saveFavor(
+                  MovieFavor(
+                      rank: detailMovie.rank, rankInten: detailMovie.rankInten,
+                      movieNm: detailMovie.movieNm, openDt: detailMovie.openDt,
+                      salesAcc: detailMovie.salesAcc, audiAcc: detailMovie.audiAcc,
+                      createAt: FormatDateUtil().todayDate()
+                  ));
+              }
             ),
         ],
       ),

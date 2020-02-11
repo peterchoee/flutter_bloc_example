@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_bloc_example/src/model/movie_favor.dart';
 import 'package:flutter_bloc_example/src/repository/repository.dart';
 import 'package:rxdart/rxdart.dart';
@@ -5,16 +7,17 @@ import 'package:rxdart/rxdart.dart';
 class MovieFavorBloc {
 
   final _repository = Repository();
-  final _favorFetcher = PublishSubject<List<MovieFavor>>();
+  final _favorController = StreamController<List<MovieFavor>>.broadcast();
 
-  Stream<List<MovieFavor>> get rankMovies => _favorFetcher.stream;
+  get favors => _favorController.stream;
 
   fetchAllFavor() async {
     List<MovieFavor> movieResultList = await _repository.getFavorList();
-    _favorFetcher.sink.add(movieResultList);
+    _favorController.sink.add(movieResultList);
   }
 
   saveFavor(MovieFavor movieFavor) async {
+    print("saveFavar : $movieFavor");
     await _repository.setFavor(movieFavor);
   }
 
@@ -23,7 +26,7 @@ class MovieFavorBloc {
   }
 
   dispose() {
-    _favorFetcher.close();
+    _favorController.close();
   }
 }
 final favorBloc = MovieFavorBloc();
