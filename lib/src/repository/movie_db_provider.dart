@@ -47,5 +47,3 @@ class MovieDbProvider {
         ")");
   }
 }
-//https://steemit.com/programming/@tstieff/using-sqflite-in-your-flutter-applicaiton-effectively
-//https://medium.com/@vaygeth/reactive-flutter-todo-app-using-bloc-design-pattern-b71e2434f692
