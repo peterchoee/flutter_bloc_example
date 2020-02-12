@@ -15,7 +15,7 @@ class FavorListState extends State<MovieFavorList> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: StreamBuilder(
-        stream: favorBloc.fetchAllFavor(),
+        stream: favorBloc.getAllFavor,
         builder: (context, snapshot) {
           print("ui stream builder : $snapshot");
           if (snapshot.hasData) {
@@ -36,8 +36,20 @@ class FavorListState extends State<MovieFavorList> {
     return ListView.builder(
         itemCount: snapshot.data.length,
         itemBuilder: (BuildContext context, int index) {
-          return ListTile(
+          final item = snapshot.data[index];
+          return Dismissible(
+            key: Key(item.id.toString()),
+            child: ListTile(
               title: Text('${snapshot.data[index].movieNm}'),
+            ),
+            background: Container(color: Colors.red),
+            onDismissed: (direction) {
+              setState(() {
+                favorBloc.deleteFavor(item.id);
+              });
+              Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text("${item.movieNm} 삭제완")));
+            },
           );
         }
     );

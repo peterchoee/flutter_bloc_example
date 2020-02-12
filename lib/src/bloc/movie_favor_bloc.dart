@@ -10,6 +10,7 @@ class MovieFavorBloc {
   final _favorController = StreamController<List<MovieFavor>>.broadcast();
 
   get favors => _favorController.stream;
+  Stream<List<MovieFavor>> get getAllFavor => _favorController.stream;
 
   fetchAllFavor() async {
     List<MovieFavor> movieResultList = await _repository.getFavorList();

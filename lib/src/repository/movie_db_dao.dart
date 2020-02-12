@@ -13,8 +13,14 @@ class MovieDbDAO {
 
   Future<List<MovieFavor>> selectFavorList() async {
     final db = await dbProvider.database;
-    var response = await db.rawQuery('SELECT * FROM $favorTableName');
-    return response.isNotEmpty ? response : Null;
+
+    List<Map<String, dynamic>> result;
+    result = await db.rawQuery('SELECT * FROM $favorTableName');
+
+    List<MovieFavor> favorList = result.isNotEmpty
+        ? result.map((item) => MovieFavor.fromDatabaseJson(item)).toList() : [];
+
+    return favorList;
   }
 
   Future<void> deleteFavor(int id) async {
