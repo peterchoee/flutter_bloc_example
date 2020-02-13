@@ -10,8 +10,8 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^0.1.2
-  rxdart: ^0.23.1
   dio: ^3.0.8
+  rxdart: ^0.23.1
   sqflite: ^1.2.0
   path_provider: ^1.6.0
   path: ^1.6.4
@@ -22,8 +22,3 @@ dev_dependencies:
     sdk: flutter
 flutter:
   uses-material-design: true
-
-# 한국영화진흥위원회
-# http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?
-# key=7d27c7864ebc5403d8f7040b059e803b&
-# targetDt=20120101
