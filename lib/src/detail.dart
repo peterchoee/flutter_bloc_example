@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/src/bloc/movie_favor_bloc.dart';
+import 'package:flutter_bloc_example/src/home.dart';
 import 'package:flutter_bloc_example/src/model/movie_favor.dart';
 import 'package:flutter_bloc_example/src/model/movie_rank.dart';
 import 'package:flutter_bloc_example/src/util/FormatDateUtil.dart';
@@ -33,6 +34,12 @@ class Detail extends StatelessWidget {
                       salesAcc: detailMovie.salesAcc, audiAcc: detailMovie.audiAcc,
                       createAt: FormatDateUtil().todayDate()
                   ));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(),
+                ),
+              );
               }
             ),
         ],
