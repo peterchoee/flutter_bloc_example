@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc_example/src/bloc/movie_favor_bloc.dart';
 import 'package:flutter_bloc_example/src/model/movie_favor.dart';
 
+import '../bloc/movie_favor_bloc.dart';
+import '../detail.dart';
+import '../model/movie_rank.dart';
+import '../util/FormatDateUtil.dart';
+
 class MovieFavorList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -13,6 +18,7 @@ class FavorListState extends State<MovieFavorList> {
 
   @override
   Widget build(BuildContext context) {
+    favorBloc.fetchAllFavor();
     return Scaffold(
       body: StreamBuilder(
         stream: favorBloc.getAllFavor,
@@ -32,8 +38,31 @@ class FavorListState extends State<MovieFavorList> {
   }
 
   Widget buildList(AsyncSnapshot<List<MovieFavor>> snapshot) {
-    print("buildList snapshot : ${snapshot.toString()}");
-    return ListView.builder(
+    //print("buildList snapshot : ${snapshot.toString()}");
+    return ListView.separated(
+        separatorBuilder: (context, index) => Divider(
+            color: Colors.black),
+        itemCount: snapshot.data.length,
+        itemBuilder: (BuildContext context, int index) {
+          final item = snapshot.data[index];
+          return Dismissible(
+            key: Key(item.id.toString()),
+            child: ListTile(
+              title: Text('${snapshot.data[index].movieNm}'),
+              subtitle: Text('저장일: ${FormatDateUtil().formattedDate(snapshot.data[index].createAt)} | 순위: ${snapshot.data[index].rank}'),
+            ),
+            background: Container(color: Colors.red),
+            onDismissed: (direction) {
+              setState(() {
+                favorBloc.deleteFavor(item.id);
+              });
+              Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text("${item.movieNm} 삭제완료")));
+            },
+          );
+        }
+    );
+    /*return ListView.builder(
         itemCount: snapshot.data.length,
         itemBuilder: (BuildContext context, int index) {
           final item = snapshot.data[index];
@@ -48,22 +77,10 @@ class FavorListState extends State<MovieFavorList> {
                 favorBloc.deleteFavor(item.id);
               });
               Scaffold.of(context)
-                  .showSnackBar(SnackBar(content: Text("${item.movieNm} 삭제완")));
+                  .showSnackBar(SnackBar(content: Text("${item.movieNm} 삭제완료")));
             },
           );
         }
-    );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    favorBloc.fetchAllFavor();
-  }
-
-  @override
-  void dispose() {
-    favorBloc.dispose();
-    super.dispose();
+    );*/
   }
 }

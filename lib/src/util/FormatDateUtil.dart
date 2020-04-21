@@ -18,4 +18,9 @@ class FormatDateUtil {
 
     return todayDate;
   }
+
+  String formattedDate(String stringDate) {
+    DateTime convertedDate = DateTime.parse(stringDate);
+    return DateFormat('yyyy년MM월dd일').format(convertedDate);
+  }
 }
