@@ -5,7 +5,6 @@
 ## Flutter
 - 플러터(Flutter)는 구글이 개발한 오픈 소스 모바일 애플리케이션 개발 프레임워크
 
-[플러터 개발환경 구축](https://choedeb.github.io/2020-02-08-flutter-setting.md)<br>
 [플러터 SDK 버전 정보](https://flutter.dev/docs/development/tools/sdk/releases)<br>
 [플러터 패키지 정보](https://pub.dev/)<br>
 
