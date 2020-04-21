@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_bloc_example/src/model/movie_favor.dart';
 import 'package:flutter_bloc_example/src/repository/repository.dart';
-import 'package:rxdart/rxdart.dart';
 
 class MovieFavorBloc {
 

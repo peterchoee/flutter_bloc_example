@@ -2,7 +2,6 @@ import 'package:flutter_bloc_example/src/model/movie_favor.dart';
 import 'package:flutter_bloc_example/src/repository/movie_db_dao.dart';
 import '../model/movie_rank.dart';
 import 'movie_api_provider.dart';
-import 'movie_db_provider.dart';
 
 class Repository {
 

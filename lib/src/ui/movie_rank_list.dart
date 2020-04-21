@@ -3,6 +3,9 @@ import 'package:flutter_bloc_example/src/bloc/movie_rank_bloc.dart';
 import 'package:flutter_bloc_example/src/detail.dart';
 import 'package:flutter_bloc_example/src/model/movie_rank.dart';
 
+import '../bloc/movie_rank_bloc.dart';
+import '../bloc/movie_rank_bloc.dart';
+
 class MovieRankList extends StatefulWidget {
 
   @override
@@ -15,11 +18,11 @@ class RankListState extends State<MovieRankList> {
 
   @override
   Widget build(BuildContext context) {
+    rankBloc.fetchAllMovies();
     return Scaffold(
       body: StreamBuilder(
         stream: rankBloc.rankMovies,
         builder: (context, snapshot) {
-          //print("ui stream builder : $snapshot");
           if (snapshot.hasData) {
             return buildList(snapshot);
           } else if (snapshot.hasError) {
@@ -32,7 +35,6 @@ class RankListState extends State<MovieRankList> {
   }
 
   Widget buildList(AsyncSnapshot<List<DailyBoxOfficeList>> snapshot) {
-    //print("buildList snapshot : ${snapshot.toString()}");
     return ListView.separated(
       separatorBuilder: (context, index) => Divider(
           color: Colors.black),
@@ -41,7 +43,7 @@ class RankListState extends State<MovieRankList> {
         return ListTile(
           contentPadding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 12.0),
           leading: Container(
-            width: 40, // can be whatever value you want
+            width: 40,
             alignment: Alignment.center,
             child: Text('${snapshot.data[index].rank}'),
           ),
@@ -59,17 +61,5 @@ class RankListState extends State<MovieRankList> {
         );
       }
     );
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    rankBloc.fetchAllMovies();
-  }
-
-  @override
-  void dispose() {
-    rankBloc.dispose();
-    super.dispose();
   }
 }

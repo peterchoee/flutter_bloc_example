@@ -16,10 +16,10 @@ class Home extends StatelessWidget {
                 Tab(icon: Icon(Icons.archive)),
               ],
             ),
-            title: Text('BLOC Example'),
+            title: Text('Flutter X BLoC'),
           ),
           body: TabBarView(
-            children: [
+            children: <Widget>[
               MovieRankList(),
               MovieFavorList(),
             ],
